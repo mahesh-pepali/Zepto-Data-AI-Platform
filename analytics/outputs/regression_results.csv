@@ -1,0 +1,2 @@
+Model,MAE,RMSE,R2,Adjusted_R2,Heteroscedasticity
+Multivariate Linear Regression,18.373542111094515,41.29212412518077,0.3609162222350881,0.27950427602299743,The residual plot suggests heteroscedasticity because the residual spread changes as predicted fare increases.
