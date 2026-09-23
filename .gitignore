@@ -2,3 +2,4 @@ capstone/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+support_assistant/data/chroma_db/

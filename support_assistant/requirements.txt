@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pydantic
+sentence-transformers
+chromadb
+langgraph
+langchain-core
+langchain-openai
