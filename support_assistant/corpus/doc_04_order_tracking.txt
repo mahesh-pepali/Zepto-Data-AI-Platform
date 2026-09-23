@@ -1,0 +1,1 @@
+Customers can track their order using the live rider map from the packed stage until delivery. The Track Order screen shows the current order status and estimated time of arrival. The ETA is updated as the order progresses. If there is no movement for more than 20 minutes after the original ETA, customers should contact support.
