@@ -77,7 +77,7 @@ price_inr = price_gbp × 105.50
 
 The fixed rate is used so that the results remain reproducible.
 
-## Web Scraping
+**## Web Scraping**
 
 The scraper is implemented in:
 
