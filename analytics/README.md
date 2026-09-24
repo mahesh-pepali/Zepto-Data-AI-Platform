@@ -217,11 +217,15 @@ The ROC curve comparison is saved in:
 
 `analytics/outputs/roc_curve_comparison.png`
 
-The Decision Tree visualization is saved in:
+The Decision Tree was visualized using scikit-learn's `plot_tree` with labeled feature names and class names, as required. A custom Decision Tree visualization is also retained as an additional supporting artifact.
+
+The required Decision Tree visualization is saved as:
 
 `analytics/outputs/decision_tree.png`
 
-A custom Decision Tree visualization was used instead of `plot_tree`.
+The additional custom visualization is saved as:
+
+`analytics/outputs/decision_tree_custom.png`
 
 ## Class Imbalance Comparison
 
