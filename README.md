@@ -318,10 +318,11 @@ ROC-AUC
 
 Baseline results:
 
-Model	Accuracy	Precision	Recall	F1	ROC-AUC
-Logistic Regression	0.8090	0.7833	0.6912	0.7344	0.8610
-Decision Tree	0.7640	0.7600	0.5588	0.6441	0.8374
-Random Forest	0.8202	0.7812	0.7353	0.7576	0.8179
+| Model | Accuracy | Precision | Recall | F1 | ROC-AUC |
+|---|---:|---:|---:|---:|---:|
+| Logistic Regression | 0.8090 | 0.7833 | 0.6912 | 0.7344 | 0.8610 |
+| Decision Tree | 0.7640 | 0.7600 | 0.5588 | 0.6441 | 0.8374 |
+| Random Forest | 0.8202 | 0.7812 | 0.7353 | 0.7576 | 0.8179 |
 
 ## Class Imbalance
 
@@ -331,10 +332,11 @@ Three Random Forest approaches were compared:
 - Class-weighted Random Forest
 - SMOTE Random Forest
 
-Method	Accuracy	Precision	Recall	F1	ROC-AUC
-Baseline	0.8202	0.7812	0.7353	0.7576	0.8179
-Class Weight Balanced	0.8034	0.7391	0.7500	0.7445	0.8229
-SMOTE	0.7921	0.7460	0.6912	0.7176	0.8250
+| Method | Accuracy | Precision | Recall | F1 | ROC-AUC |
+|---|---:|---:|---:|---:|---:|
+| Baseline | 0.8202 | 0.7812 | 0.7353 | 0.7576 | 0.8179 |
+| Class Weight Balanced | 0.8034 | 0.7391 | 0.7500 | 0.7445 | 0.8229 |
+| SMOTE | 0.7921 | 0.7460 | 0.6912 | 0.7176 | 0.8250 |
 
 ## Random Forest Tuning
 
@@ -422,7 +424,8 @@ The Support Assistant module implements an AI-powered policy support system usin
 
 The assistant is designed to answer questions using a predefined Zepto policy corpus.
 
-Architecture
+## Architecture
+``` text
 Customer Query
       |
       v
@@ -456,23 +459,24 @@ Top 3 Policy Chunks                |
                     |
                     v
              JSON API Response
-Policy Corpus
+```
+## Policy Corpus
 
 The assistant contains eight policy documents:
 
-Delivery Policy
-Returns and Refunds
-Membership Tiers
-Order Tracking
-Order Cancellation
-Damaged or Missing Items
-Gift Cards
-Support Hours
+- Delivery Policy
+- Returns and Refunds
+- Membership Tiers
+- Order Tracking
+- Order Cancellation
+- Damaged or Missing Items
+- Gift Cards
+- Support Hours
 
 The documents are stored in:
-
 support_assistant/corpus/
-Embeddings
+
+## Embeddings
 
 The policy documents are embedded using:
 
@@ -487,19 +491,20 @@ zepto_policy
 The ChromaDB database is stored at:
 
 support_assistant/data/chroma_db/
-Retrieval
+
+## Retrieval
 
 For policy questions:
 
-The user query is converted into an embedding.
-ChromaDB performs semantic similarity search.
-The top three most similar policy documents are retrieved.
-The retrieved context is passed to the response generation stage.
-The response contains the retrieved document IDs as sources.
+- The user query is converted into an embedding.
+- ChromaDB performs semantic similarity search.
+- The top three most similar policy documents are retrieved.
+- The retrieved context is passed to the response generation stage.
+- The response contains the retrieved document IDs as sources.
 
 Cosine similarity is used through normalized embeddings and ChromaDB retrieval.
 
-Intent Classification
+## Intent Classification
 
 The classifier uses the required keyword heuristic.
 
@@ -517,7 +522,8 @@ support hours
 Otherwise it is classified as:
 
 general_question
-LangGraph
+
+## LangGraph
 
 The LangGraph workflow contains three required nodes:
 
@@ -534,15 +540,16 @@ retrieve_and_answer
 General questions are routed to:
 
 direct_answer
-Prompt Design
+
+## Prompt Design
 
 The retrieval prompt follows a structured template containing:
 
-Role
-Context
-Task
-Format
-Length
+- Role
+- Context
+- Task
+- Format
+- Length
 
 It also contains:
 
@@ -551,7 +558,7 @@ A few-shot example
 
 The prompt instructs the assistant to use only the retrieved policy context and avoid inventing policy information.
 
-Mock LLM Mode
+## Mock LLM Mode
 
 The default execution mode is:
 
@@ -581,7 +588,8 @@ The fields are:
 answer — generated response
 sources — retrieved policy document IDs
 confidence — value between 0 and 1
-FastAPI
+
+## FastAPI
 
 The support assistant exposes:
 
@@ -618,7 +626,7 @@ returns:
   "sources": [],
   "confidence": 1.0
 }
-Running the Support Assistant Locally
+## Running the Support Assistant Locally
 
 First build the ChromaDB collection:
 
@@ -635,7 +643,8 @@ http://127.0.0.1:7860
 Swagger documentation is available at:
 
 http://127.0.0.1:7860/docs
-Testing the Graph
+
+## Testing the Graph
 
 Run:
 
@@ -645,7 +654,7 @@ This tests both:
 
 Policy-question routing
 General-question routing
-Testing Retrieval
+## Testing Retrieval
 
 Run:
 
@@ -653,7 +662,7 @@ python -m support_assistant.code.test_retrieval
 
 This verifies that policy queries retrieve relevant documents from ChromaDB.
 
-Docker
+## Docker
 
 The Support Assistant includes a Dockerfile for local containerized execution.
 
@@ -667,10 +676,10 @@ docker run --rm -p 7860:7860 zepto-support-assistant
 
 The Docker container:
 
-Installs the required dependencies.
-Builds the policy embedding collection.
-Starts the FastAPI application.
-Exposes the service on port 7860.
+- Installs the required dependencies.
+- Builds the policy embedding collection.
+- Starts the FastAPI application.
+- Exposes the service on port 7860.
 
 The container uses:
 
@@ -678,38 +687,35 @@ MOCK_LLM=1
 
 by default, so the baseline application does not require an external API key.
 
-Requirements
+## Requirements
 
 Each module maintains its own requirements file.
 
-Data Pipeline
-data_pipeline/requirements.txt
-Analytics
-analytics/requirements.txt
-Support Assistant
-support_assistant/requirements.txt
+- Data Pipeline : data_pipeline/requirements.txt
+- Analytics : analytics/requirements.txt
+- Support Assistant : support_assistant/requirements.txt
 
 The project primarily uses:
 
-Python
-Requests
-BeautifulSoup
-Pandas
-NumPy
-Matplotlib
-Seaborn
-Scikit-learn
-Imbalanced-learn
-Joblib
-Sentence Transformers
-ChromaDB
-LangGraph
-Pydantic
-FastAPI
-Uvicorn
-LangChain OpenAI
-Docker
-Installation
+- Python
+- Requests
+- BeautifulSoup
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Scikit-learn
+- Imbalanced-learn
+- Joblib
+- Sentence Transformers
+- ChromaDB
+- LangGraph
+- Pydantic
+- FastAPI
+- Uvicorn
+- LangChain OpenAI
+- Docker
+## Installation
 
 Create and activate a Python virtual environment.
 
@@ -734,7 +740,7 @@ pip install -r analytics/requirements.txt
 For Support Assistant:
 
 pip install -r support_assistant/requirements.txt
-End-to-End Execution
+## End-to-End Execution
 
 The three modules can be executed independently.
 
@@ -759,8 +765,9 @@ uvicorn support_assistant.code.main:app --reload --port 7860
 Then open:
 
 http://127.0.0.1:7860/docs
-Design Decisions
-Data Pipeline
+## Design Decisions
+
+### Data Pipeline
 
 The pipeline uses a lightweight requests and BeautifulSoup approach for web scraping.
 
@@ -770,7 +777,7 @@ The database is normalized into categories and books to avoid unnecessary duplic
 
 SQL results are compared with equivalent Pandas operations.
 
-Analytics
+### Analytics
 
 An offline copy of the dataset is stored so the project can be reproduced without repeatedly downloading the source dataset.
 
@@ -784,7 +791,7 @@ GridSearchCV is used for systematic Random Forest tuning.
 
 The final preprocessing and model are saved together as a Joblib pipeline.
 
-Support Assistant
+### Support Assistant
 
 The support assistant uses a fixed policy corpus so that responses can be grounded in defined information.
 
@@ -802,28 +809,28 @@ Docker provides a reproducible deployment environment.
 
 MOCK_LLM=1 is used as the default baseline so the application can run without paid services or external API credentials.
 
-Reproducibility
+## Reproducibility
 
 The project is designed so that each module can be run independently from the project root.
 
 The main reproducibility features are:
 
-Fixed random states for machine learning experiments.
-Local dataset fallbacks.
-Saved cleaned datasets.
-Saved model artifacts.
-Persistent ChromaDB storage.
-Module-specific requirements files.
-Docker support for the Support Assistant.
-README instructions for each module.
-Git Workflow
+- Fixed random states for machine learning experiments.
+- Local dataset fallbacks.
+- Saved cleaned datasets.
+- Saved model artifacts.
+- Persistent ChromaDB storage.
+- Module-specific requirements files.
+- Docker support for the Support Assistant.
+- README instructions for each module.
+## Git Workflow
 
 The project was developed using feature branches and merged into the main branch.
 
 The repository history includes separate development branches for the modules.
 
 The workflow followed the pattern:
-
+```text
 main
  |
  +-- feature/data-pipeline
@@ -843,135 +850,135 @@ main
          +-- commits
          |
          +-- merge into main
-
+```
 The Git history therefore records the development of the major project modules separately.
 
-Module Documentation
+## Module Documentation
 
 Detailed documentation is available inside each module.
 
-Data Pipeline
+### Data Pipeline
 data_pipeline/README.md
 
 This covers:
 
-Web scraping
-Data cleaning
-SQLite database
-SQL queries
-Pandas analysis
-Outputs
-Analytics
+- Web scraping
+- Data cleaning
+- SQLite database
+- SQL queries
+- Pandas analysis
+- Outputs
+### Analytics
 analytics/README.md
 
 This covers:
 
-EDA
-Data cleaning
-Visualizations
-Classification
-Class imbalance
-Random Forest tuning
-Regression
-Model artifacts
-Verification
-Support Assistant
+- EDA
+- Data cleaning
+- Visualizations
+- Classification
+- Class imbalance
+- Random Forest tuning
+- Regression
+- Model artifacts
+- Verification
+### Support Assistant
 support_assistant/README.md
 
 This covers:
 
-Policy corpus
-Embeddings
-ChromaDB
-Prompt design
-LangGraph
-Retrieval
-Mock LLM
-FastAPI
-Docker
-Verification
-Verification Checklist
+- Policy corpus
+- Embeddings
+- ChromaDB
+- Prompt design
+- LangGraph
+- Retrieval
+- Mock LLM
+- FastAPI
+- Docker
+- Verification
+## Verification Checklist
 
 The complete project was verified across the three modules.
 
-Data Pipeline
- Web scraping implemented
- Book data collected
- Categories extracted
- Data cleaning implemented
- Price conversion implemented
- Clean CSV generated
- SQLite database created
- Normalized tables created
- SQL queries implemented
- Pandas equivalents implemented
- Query outputs generated
-Analytics
- Titanic dataset loaded
- Offline dataset fallback created
- Missing values analyzed
- Missing values handled
- Outliers identified
- Fare distribution analyzed
- Survival analysis completed
- Correlation analysis completed
- Multivariate charts generated
- Chart interpretations documented
- Z-score standardization performed
- Train/test split performed
- Leakage prevention applied
- Logistic Regression trained
- Decision Tree trained
- Random Forest trained
- Classification metrics calculated
- Class imbalance strategies compared
- Random Forest tuned
- OOB evaluation performed
- Regression side-task completed
- Residual analysis completed
- Final model saved
- Saved model reloaded and verified
-Support Assistant
- Eight policy documents created
- Sentence Transformer embeddings implemented
- ChromaDB collection created
- Top-3 retrieval implemented
- Prompt template implemented
- Negative constraint included
- Few-shot example included
- LangGraph StateGraph implemented
- TypedDict state implemented
- Three graph nodes implemented
- Conditional routing implemented
- Mock LLM mode implemented
- Pydantic response validation implemented
- Policy-question testing completed
- General-question testing completed
- FastAPI endpoint implemented
- API tested locally
- Docker image built successfully
- Docker container tested successfully
-Project Outputs
+### Data Pipeline
+- Web scraping implemented
+- Book data collected
+- Categories extracted
+- Data cleaning implemented
+- Price conversion implemented
+- Clean CSV generated
+- SQLite database created
+- Normalized tables created
+- SQL queries implemented
+- Pandas equivalents implemented
+- Query outputs generated
+### Analytics
+- Titanic dataset loaded
+- Offline dataset fallback created
+- Missing values analyzed
+- Missing values handled
+- Outliers identified
+- Fare distribution analyzed
+- Survival analysis completed
+- Correlation analysis completed
+- Multivariate charts generated
+- Chart interpretations documented
+- Z-score standardization performed
+- Train/test split performed
+- Leakage prevention applied
+- Logistic Regression trained
+- Decision Tree trained
+- Random Forest trained
+- Classification metrics calculated
+- Class imbalance strategies compared
+- Random Forest tuned
+- OOB evaluation performed
+- Regression side-task completed
+- Residual analysis completed
+- Final model saved
+- Saved model reloaded and verified
+### Support Assistant
+- Eight policy documents created
+- Sentence Transformer embeddings implemented
+- ChromaDB collection created
+- Top-3 retrieval implemented
+- Prompt template implemented
+- Negative constraint included
+- Few-shot example included
+- LangGraph StateGraph implemented
+- TypedDict state implemented
+- Three graph nodes implemented
+- Conditional routing implemented
+- Mock LLM mode implemented
+- Pydantic response validation implemented
+-  Policy-question testing completed
+- General-question testing completed
+- FastAPI endpoint implemented
+- API tested locally
+- Docker image built successfully
+- Docker container tested successfully
+## Project Outputs
 
 The main generated outputs are stored inside their respective module directories.
 
-data_pipeline/outputs/
-analytics/outputs/
-support_assistant/data/chroma_db/
+- data_pipeline/outputs/
+- analytics/outputs/
+- support_assistant/data/chroma_db/
 
 Model artifacts are stored in:
 
 analytics/models/
 
-Datasets are stored in:
+### Datasets are stored in:
 
-data_pipeline/data/
-analytics/data/
-analytics/titanic.csv
-Conclusion
+- data_pipeline/data/
+- analytics/data/
+- analytics/titanic.csv
+## Conclusion
 
 The Zepto Data & AI Platform combines three stages of an end-to-end AI/ML workflow:
-
+```text
 Data Collection
       |
       v
@@ -994,20 +1001,9 @@ API Deployment
       |
       v
 Docker Deployment
-
+```text
 The project demonstrates practical implementation of data engineering, exploratory analysis, machine learning, retrieval-augmented support workflows, API development, and containerization within a single repository.
 
 
-**This is the README that should go at the project root:**
 
-```text
-zepto-data-ai-platform/
-└── README.md
 
-Your three module READMEs remain separately inside:
-
-data_pipeline/README.md
-analytics/README.md
-support_assistant/README.md
-
-So you will have 4 README files total: one overall RE
