@@ -192,6 +192,7 @@ outputs/query_outputs.txt
 This file contains the printed output of the executed SQL analysis.
 
 Project Structure
+'''text
 data_pipeline/
 ├── code/
 │   ├── scraper.py
@@ -204,6 +205,7 @@ data_pipeline/
 │   └── query_outputs.txt
 ├── README.md
 └── requirements.txt
+'''
 
 How to Run:
 
@@ -269,17 +271,17 @@ The outputs are compared to verify consistency.
 
 The data pipeline was verified by confirming:
 
-3 pages were scraped.
-60 books were collected.
-25 categories were identified.
-The cleaned CSV was generated successfully.
-No missing values remained in the cleaned dataset.
-The SQLite database was created successfully.
-The database contains 60 book records.
-The database contains 25 categories.
-The books and categories tables are connected through a foreign key.
-At least five SQL queries were executed.
-SQL query outputs were saved.
-Equivalent Pandas operations were performed.
-SQL and Pandas join results match.
+-3 pages were scraped.
+-60 books were collected.
+-25 categories were identified.
+-The cleaned CSV was generated successfully.
+-No missing values remained in the cleaned dataset.
+-The SQLite database was created successfully.
+-The database contains 60 book records.
+-The database contains 25 categories.
+-The books and categories tables are connected through a foreign key.
+-At least five SQL queries were executed.
+-SQL query outputs were saved.
+-Equivalent Pandas operations were performed.
+-SQL and Pandas join results match.
 
