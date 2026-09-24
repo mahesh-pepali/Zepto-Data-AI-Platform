@@ -1002,7 +1002,8 @@ API Deployment
       |
       v
 Docker Deployment
-```text
+```
+
 The project demonstrates practical implementation of data engineering, exploratory analysis, machine learning, retrieval-augmented support workflows, API development, and containerization within a single repository.
 
 
