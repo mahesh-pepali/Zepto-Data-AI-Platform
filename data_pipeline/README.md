@@ -67,17 +67,9 @@ The following transformations are performed:
 ## Currency Conversion
 
 The assignment requires the fixed conversion rate:
-
-```text
 1 GBP = 105.50 INR
 
-Therefore:
-
-price_inr = price_gbp × 105.50
-
-The fixed rate is used so that the results remain reproducible.
-
-**## Web Scraping**
+## Web Scraping
 
 The scraper is implemented in:
 
@@ -199,8 +191,7 @@ outputs/query_outputs.txt
 
 This file contains the printed output of the executed SQL analysis.
 
-## Project Structure
-
+Project Structure
 data_pipeline/
 ├── code/
 │   ├── scraper.py
@@ -214,22 +205,18 @@ data_pipeline/
 ├── README.md
 └── requirements.txt
 
-## How to Run
+How to Run:
 
 From the project root, activate the project virtual environment first.
 
-Run the scraper:
-
+Run the Scraper:
 python data_pipeline/code/scraper.py
 
 This collects the book data and creates the cleaned CSV.
 
-Create the SQLite database:
-
+Create the SQLite Database
 python data_pipeline/code/database.py
-
-Run the SQL and Pandas analysis:
-
+Run the SQL and Pandas Analysis
 python data_pipeline/code/queries.py
 
 The query results are written to:
@@ -295,6 +282,4 @@ At least five SQL queries were executed.
 SQL query outputs were saved.
 Equivalent Pandas operations were performed.
 SQL and Pandas join results match.
-
-The complete data pipeline is contained inside the /data_pipeline module.
 
