@@ -376,11 +376,12 @@ A separate regression task was performed using fare as the target.
 
 Results:
 
-Metric	Result
-MAE	18.3735
-RMSE	41.2921
-R²	0.3609
-Adjusted R²	0.2795
+| Metric | Result |
+|---|---:|
+| MAE | 18.3735 |
+| RMSE | 41.2921 |
+| R² | 0.3609 |
+| Adjusted R² | 0.2795 |
 
 Residual analysis was also performed to investigate heteroscedasticity.
 
