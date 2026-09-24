@@ -317,12 +317,12 @@ F1-score
 ROC-AUC
 
 Baseline results:
-``` text
+
 Model	Accuracy	Precision	Recall	F1	ROC-AUC
 Logistic Regression	0.8090	0.7833	0.6912	0.7344	0.8610
 Decision Tree	0.7640	0.7600	0.5588	0.6441	0.8374
 Random Forest	0.8202	0.7812	0.7353	0.7576	0.8179
-```
+
 ## Class Imbalance
 
 Three Random Forest approaches were compared:
@@ -330,12 +330,12 @@ Three Random Forest approaches were compared:
 - Baseline Random Forest
 - Class-weighted Random Forest
 - SMOTE Random Forest
-``` text
+
 Method	Accuracy	Precision	Recall	F1	ROC-AUC
 Baseline	0.8202	0.7812	0.7353	0.7576	0.8179
 Class Weight Balanced	0.8034	0.7391	0.7500	0.7445	0.8229
 SMOTE	0.7921	0.7460	0.6912	0.7176	0.8250
-```
+
 ## Random Forest Tuning
 
 GridSearchCV was used to tune:
@@ -367,7 +367,8 @@ Recall	0.7353
 F1-score	0.7692
 ROC-AUC	0.8305
 OOB Score	0.8326
-Regression
+
+## Regression
 
 A separate regression task was performed using fare as the target.
 
@@ -387,7 +388,7 @@ The residual spread ratio was:
 
 The results suggest non-constant residual variance.
 
-Saved Models
+## Saved Models
 
 The final model pipeline is stored at:
 
@@ -397,7 +398,7 @@ The saved pipeline contains the preprocessing and final estimator together.
 
 The saved model was reloaded and verified successfully.
 
-Running the Analytics Module
+## Running the Analytics Module
 
 From the project root:
 
@@ -414,7 +415,8 @@ python analytics/code/03_finalize.py
 For detailed documentation, see:
 
 analytics/README.md
-Module 3: Support Assistant
+
+## Module 3: Support Assistant
 
 The Support Assistant module implements an AI-powered policy support system using semantic retrieval, embeddings, ChromaDB, LangGraph, Pydantic, FastAPI, and Docker.
 
